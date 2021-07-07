@@ -1,6 +1,13 @@
 import discord
 
+import Status
+
+client = discord.Client()
+status = Status()
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    
+
+@client.event
+async def on_message(msg):
