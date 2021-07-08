@@ -22,6 +22,9 @@ class Command:
         """Help text
         Get usage of this command
         """
-        txt = """
+        txt = """Command list:{0}
+        Usage:
+        {1}
         """
+        txt.format(str(self.command), str(self.__doc__))
         return txt
