@@ -15,3 +15,4 @@ async def on_message(msg):
     for c in command_list:
         if c.check(msg):
             c.run()
+
