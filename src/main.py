@@ -1,18 +1,23 @@
 import discord
 
-import Status
+from status import Status
+from command import Command
 
 client = discord.Client()
 status = Status()
-command_list = []
+command = Command()
 
 @client.event
 async def on_ready():
+    status.set_ready(True)
     print(client.user, "login")
 
 @client.event
 async def on_message(msg):
-    for c in command_list:
-        if c.check(msg):
-            c.run()
-
+    
+    if msg.author.bot:
+        return
+    
+    if msg.content.startswith(status.prefix):
+        # if msg has prefix
+        command.run(msg)
