@@ -1,11 +1,11 @@
-import main
-
-status = main.status
-
 class Command:
     """Super class for each Command
     extend this class to make new command
     """
+    status = None
+    def __init__(self, status):
+        self.status = status
+
     def run(self, msg):
         #eliminate prefix
         prefix_len = len(status.prefix)+1
@@ -25,7 +25,7 @@ class Command:
             return f.read()
         return "help_txt err"
 
-    def connect(self, msg):
+    async def connect(self, msg):
         if msg.author.voice is None:
             await msg.channel.send("あなたはボイスチャンネルに接続していません。")
             return

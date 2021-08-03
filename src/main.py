@@ -1,11 +1,14 @@
 import discord
+import json
 
-from status import Status
+import status
 from command import Command
 
 client = discord.Client()
-status = Status()
-command = Command()
+command = Command(status)
+
+setting = json.load(open("setting\\token.json", "r"))
+print(setting["discord"])
 
 @client.event
 async def on_ready():
@@ -21,3 +24,6 @@ async def on_message(msg):
     if msg.content.startswith(status.prefix):
         # if msg has prefix
         command.run(msg)
+
+client.run(setting["discord"])
+print("ok")
