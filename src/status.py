@@ -1,35 +1,20 @@
-class Status:
-    """class for server Status
-    """
+prefix = "yun"
+ready = False
+con_server = []
 
-    prefix = "yun"
+def is_ready():
+    return ready
 
-    def __init__(self):
-        """init
-        Set or get server status.
-        """
+def set_ready(newstatus):
+    ready = newstatus
+    
+def connect(server):
+    global con_server
+    con_server += server
 
-        self.__ready = False
-        self.con_channel = []
-        print(self.__class__, "Ready")
+def disconnect(server):
+    global con_server
+    con_server.remove(server)
 
-    def is_ready(self):
-        """getter for __ready
-        Check if server is ready.
-        """
-        return self.__ready
-
-    def set_ready(self, ready):
-        """setter for __ready
-        Set if server is ready
-        """
-        self.__ready = ready
-        
-    def connect(self, channel):
-        self.con_channel += channel
-
-    def disconnect(self, channel):
-        self.con_channel.remove(channel)
-
-    def is_connect(self, channel):
-        return channel in self.con_channel
+def is_connect(server):
+    return server in con_server
