@@ -16,7 +16,7 @@ async def on_ready():
     print(client.user, "login")
 
 @client.event
-async def on_message(msg):
+async def on_message(msg: discord.Message):
     
     if msg.author.bot:
         return
