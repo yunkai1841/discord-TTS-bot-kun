@@ -1,35 +1,42 @@
-class Command:
-    """Super class for each Command
-    extend this class to make new command
-    """
-    status = None
-    def __init__(self, status):
-        self.status = status
+import asyncio
+import discord
 
-    def run(self, msg):
-        #eliminate prefix
+import status
+
+class Command:
+
+    def run(self, msg: discord.Message):
+        #eliminate prefix 
         prefix_len = len(status.prefix)+1
-        msg_txt = msg.content[prefix_len:]
+        msg_txt:str = msg.content[prefix_len:]
 
         if msg_txt.startswith("con"):
             self.connect(msg)
-
-    def check(self, string):
-        if string in self.command:
-            return True
-        else:
-            return False
+        elif msg_txt.startswith(("dc", "dis")):
+            self.diconnect(msg)
 
     def help_txt(self):
         with open("..\help\general.txt", "r") as f:
             return f.read()
         return "help_txt err"
 
-    async def connect(self, msg):
+    async def connect(self, msg: discord.Message):
         if msg.author.voice is None:
             await msg.channel.send("あなたはボイスチャンネルに接続していません。")
             return
-        # ボイスチャンネルに接続する
+        # connect to voice channel
         await msg.author.voice.channel.connect()
         await msg.channel.send("接続しました。")
-        status.connect(msg.channel)
+        status.connect(msg.guild)
+
+    async def disconnect(self, msg: discord.Message):
+        if msg.guild.voice_client is None:
+            await msg.channel.send("接続していません。")
+            return
+
+        # disconnect
+        await msg.guild.voice_client.disconnect()
+
+        await msg.channel.send("切断しました。")
+        status.disconnect(msg.guild)
+
