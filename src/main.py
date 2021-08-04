@@ -5,7 +5,7 @@ import status
 from command import Command
 
 client = discord.Client()
-command = Command(status)
+command = Command()
 
 setting = json.load(open("setting\\token.json", "r"))
 print(setting["discord"])
