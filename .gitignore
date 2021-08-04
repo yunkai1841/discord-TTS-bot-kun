@@ -1,4 +1,4 @@
 setting/
 setting/token.json
 
-src\__pycache__
+src/__pycache__
