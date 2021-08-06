@@ -1,6 +1,7 @@
 import discord
 
 prefix = "yun"
+max_length = 20
 ready = False
 con_server = []
 
