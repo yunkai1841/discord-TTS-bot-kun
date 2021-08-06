@@ -1,3 +1,5 @@
+import discord
+
 prefix = "yun"
 ready = False
 con_server = []
@@ -8,13 +10,13 @@ def is_ready():
 def set_ready(newstatus):
     ready = newstatus
     
-def connect(server):
+def connect(guild: discord.Guild):
     global con_server
-    con_server += server
+    con_server += guild.id
 
-def disconnect(server):
+def disconnect(guild: discord.Guild):
     global con_server
-    con_server.remove(server)
+    con_server.remove(guild)
 
-def is_connect(server):
-    return server in con_server
+def is_connect(guild: discord.Guild):
+    return guild in con_server
