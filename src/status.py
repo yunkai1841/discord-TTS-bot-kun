@@ -12,7 +12,7 @@ def set_ready(newstatus):
     
 def connect(guild: discord.Guild):
     global con_server
-    con_server += guild.id
+    con_server.append(guild)
 
 def disconnect(guild: discord.Guild):
     global con_server

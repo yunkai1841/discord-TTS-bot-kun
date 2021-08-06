@@ -24,4 +24,3 @@ async def on_message(msg: discord.Message):
         await command.run(msg)
 
 client.run(tokens["discord"])
-print("ok")
