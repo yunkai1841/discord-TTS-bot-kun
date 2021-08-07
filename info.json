@@ -1,0 +1,7 @@
+{
+    "version":"0.1",
+    "description":"TTS bot for discord",
+    "releases":{
+        "0.1":"First version"
+    }
+}
