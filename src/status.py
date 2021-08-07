@@ -22,6 +22,3 @@ def disconnect(guild: discord.Guild):
 def is_connect(guild: discord.Guild):
     return guild in con_server
 
-
-class BotInfo:
-    
