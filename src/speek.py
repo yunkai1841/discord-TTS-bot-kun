@@ -77,5 +77,3 @@ def list_voices(language: str = None, debug: bool = False) -> list:
             print(f"Gender: {gender.name}")
 
     return voice_names
-
-print(list_voices("ja-JP", True))
