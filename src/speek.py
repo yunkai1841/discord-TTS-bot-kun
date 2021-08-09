@@ -45,7 +45,7 @@ def ssml_to_speech(
     #TODO speaking_rate, pitch, valume_gain_db
     audio_config = texttospeech.AudioConfig(
         audio_encoding=texttospeech.AudioEncoding.LINEAR16,
-        sample_rate_hertz=48000
+        sample_rate_hertz=96000
     )
     response = tts_client.synthesize_speech(
         input=input_text, voice=voice, audio_config=audio_config

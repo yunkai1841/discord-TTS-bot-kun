@@ -18,14 +18,14 @@ async def on_message(msg: discord.Message):
     if msg.author.bot:
         return
     
-    if msg.content.startswith(status.prefix):
+    elif msg.content.startswith(status.prefix):
         # if msg starts with prefix
         await command.run(msg)
 
-    if status.is_connect(msg.guild) and\
+    elif status.is_connect(msg.guild) and\
         status.is_observing(msg.guild, msg.channel):
         ssml = speek.text_to_ssml(msg.content)
-        audio = speek.ssml_to_speech(ssml, outputfile="out.wav")
+        audio = speek.ssml_to_speech(ssml)
         bs = io.BytesIO(audio)
         msg.guild.voice_client.play(discord.PCMAudio(bs))
 
