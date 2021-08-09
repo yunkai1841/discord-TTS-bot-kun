@@ -25,7 +25,7 @@ async def connect(msg: discord.Message):
     # connect to voice channel
     await msg.author.voice.channel.connect()
     await msg.channel.send("接続しました。")
-    status.connect(msg.guild)
+    status.connect(msg.guild, msg.channel)
 
 async def disconnect(msg: discord.Message):
     if msg.guild.voice_client is None:

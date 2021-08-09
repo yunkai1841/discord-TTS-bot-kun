@@ -1,8 +1,6 @@
 import discord
 
-import status
-import command
-import settings
+import status, command, settings, speek
 
 client = discord.Client()
 
@@ -22,5 +20,11 @@ async def on_message(msg: discord.Message):
     if msg.content.startswith(status.prefix):
         # if msg starts with prefix
         await command.run(msg)
+
+    if status.is_connect(msg.guild) and\
+        status.is_observing(msg.guild, msg.channel):
+        ssml = speek.text_to_ssml(msg.content)
+        audio = speek.ssml_to_speech(ssml)
+        msg.guild.voice_client.play(discord.PCMAudio(audio))
 
 client.run(tokens["discord"])
