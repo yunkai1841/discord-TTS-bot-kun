@@ -54,7 +54,7 @@ def ssml_to_speech(
     if outputfile != None:
         with open(outputfile, "wb") as out:
             out.write(response.audio_content)
-            print('Audio content written to file "output.mp3"')
+            print(f'Audio content written to file {outputfile}')
 
     return response.audio_content
 
