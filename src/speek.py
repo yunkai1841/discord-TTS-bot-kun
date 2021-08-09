@@ -22,13 +22,44 @@ def text_to_ssml(txt: str) -> str:
 
     return txt
 
-def tts(txt: str, language, gender):
+def ssml_to_speech(
+    ssml: str, 
+    language = "ja_JP", 
+    voice_name = "ja-JP-Standard-A", 
+    gender = None):
     """Pass text to gcloud
+    see reference
+    https://cloud.google.com/text-to-speech/docs/reference/rpc/google.cloud.texttospeech.v1
+
+    Return:
+        audio content(binary)
     """
-    pass
+    input_text = texttospeech.SynthesisInput(ssml=ssml)
+
+    voice = texttospeech.VoiceSelectionParams(
+        language_code = language,
+        name=voice_name,
+        # ssml_gender=texttospeech.SsmlVoiceGender.SSML_VOICE_GENDER_UNSPECIFIED,
+    )
+    #TODO speaking_rate, pitch, valume_gain_db
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.LINEAR16
+    )
+    response = tts_client.synthesize_speech(
+        input=input_text, voice=voice, audio_config=audio_config
+    )
+
+    return response.audio_content
 
 def list_voices(language: str = None, debug: bool = False) -> list:
     """Get list of availiable voices
+    see reference
+    https://cloud.google.com/text-to-speech/docs/reference/rpc/google.cloud.texttospeech.v1
+
+    Param:
+        language: language_code (default=None)
+        see website
+        http://www.lingoes.net/en/translator/langcode.htm
 
     example:
         list_voices("ja_JP")
@@ -47,4 +78,4 @@ def list_voices(language: str = None, debug: bool = False) -> list:
 
     return voice_names
 
-list_voices("ja-JP", True)
+print(list_voices("ja-JP", True))
