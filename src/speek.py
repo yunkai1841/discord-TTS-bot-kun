@@ -26,7 +26,8 @@ def ssml_to_speech(
     ssml: str, 
     language = "ja_JP", 
     voice_name = "ja-JP-Standard-A", 
-    gender = None):
+    gender = None,
+    outputfile = None):
     """Pass text to gcloud
     see reference
     https://cloud.google.com/text-to-speech/docs/reference/rpc/google.cloud.texttospeech.v1
@@ -43,11 +44,17 @@ def ssml_to_speech(
     )
     #TODO speaking_rate, pitch, valume_gain_db
     audio_config = texttospeech.AudioConfig(
-        audio_encoding=texttospeech.AudioEncoding.LINEAR16
+        audio_encoding=texttospeech.AudioEncoding.LINEAR16,
+        sample_rate_hertz=48000
     )
     response = tts_client.synthesize_speech(
         input=input_text, voice=voice, audio_config=audio_config
     )
+
+    if outputfile != None:
+        with open(outputfile, "wb") as out:
+            out.write(response.audio_content)
+            print('Audio content written to file "output.mp3"')
 
     return response.audio_content
 

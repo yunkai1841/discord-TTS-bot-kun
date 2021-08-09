@@ -1,4 +1,5 @@
 import discord
+import io
 
 import status, command, settings, speek
 
@@ -24,7 +25,8 @@ async def on_message(msg: discord.Message):
     if status.is_connect(msg.guild) and\
         status.is_observing(msg.guild, msg.channel):
         ssml = speek.text_to_ssml(msg.content)
-        audio = speek.ssml_to_speech(ssml)
-        msg.guild.voice_client.play(discord.PCMAudio(audio))
+        audio = speek.ssml_to_speech(ssml, outputfile="out.wav")
+        bs = io.BytesIO(audio)
+        msg.guild.voice_client.play(discord.PCMAudio(bs))
 
 client.run(tokens["discord"])
