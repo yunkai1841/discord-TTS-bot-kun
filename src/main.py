@@ -23,7 +23,8 @@ async def on_message(msg: discord.Message):
         await command.run(msg)
 
     elif status.is_connect(msg.guild) and\
-        status.is_observing(msg.guild, msg.channel):
+        status.is_observing(msg.guild, msg.channel) and\
+        not msg.guild.voice_client.is_playing():
         ssml = speek.text_to_ssml(msg.content)
         audio = speek.ssml_to_speech(ssml)
         bs = io.BytesIO(audio)
