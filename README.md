@@ -1,5 +1,7 @@
 # discord-TTS-bot-kun
 TTS bot kun
+The project has been suspended, because my GCP trial is finished.
+It may restart if I get an credit card. 
 
 # Environment
 discord.py
