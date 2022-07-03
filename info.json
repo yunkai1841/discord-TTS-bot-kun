@@ -1,7 +1,7 @@
 {
-    "version":"0.1-alpha",
-    "description":"TTS bot for discord",
-    "releases":{
-        "0.1":"First version"
+    "version" : "0.1-alpha",
+    "description" : "TTS bot for discord",
+    "releases" : {
+        "0.1" : "First version"
     }
 }
