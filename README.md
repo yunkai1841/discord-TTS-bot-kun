@@ -12,6 +12,14 @@
 - **[Discord.py]**
 
 <br>
+
+```shell
+pip install                     \
+    google-cloud-texttospeech   \
+    discord.py
+```
+
+<br>
 <br>
 
 ## Usage
