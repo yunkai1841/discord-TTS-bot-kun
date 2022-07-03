@@ -1,11 +1,13 @@
 
 # Discord TTS Bot-kun   [![Badge License]][License]   [![Badge Release]][Releases]
 
-*Make your text audible.*
+*Bot-kun will make your text audible.*
 
 <br>
 
 ## Dependencies
+
+- **[Google Cloud TextToSpeech]**
 
 - **[Discord.py]**
 
@@ -14,9 +16,7 @@
 
 ## Usage
 
-1. Create a `settings/token.json` file.
-
-2. Place your Discord token inside it:
+-   Create a `settings/token.json` file.
 
     ```json
     {
@@ -24,13 +24,14 @@
     }
     ```
 
-3. Pass your google authentication.
+-   Pass your google authentication.
 
 <br>
 
 
 <!----------------------------------------------------------------------------->
 
+[Google Cloud TextToSpeech]: https://pypi.org/project/google-cloud-texttospeech/
 [Discord.py]: https://pypi.org/project/discord.py/
 [Releases]: https://github.com/yunkai1841/discord-TTS-bot-kun/releases
 
