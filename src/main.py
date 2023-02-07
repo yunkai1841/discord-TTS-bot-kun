@@ -4,7 +4,7 @@ import status, command, settings, speek
 
 client = discord.Client(intents = discord.Intents.all())
 
-tokens = settings.get_token(True)
+tokens = settings.get_token()
 
 @client.event
 async def on_ready():
