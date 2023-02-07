@@ -3,10 +3,13 @@ import discord
 
 import status
 
-async def run(msg: discord.Message):
+async def run(msg: discord.Message, debug: bool = False):
     #eliminate prefix 
     prefix_len = len(status.prefix)+1
     msg_txt:str = msg.content[prefix_len:]
+
+    if debug:
+        print(f"command: {msg_txt}")
 
     if msg_txt.startswith("con"):
         await connect(msg)
