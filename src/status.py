@@ -10,6 +10,7 @@ def is_ready():
     return ready
 
 def set_ready(newstatus):
+    global ready
     ready = newstatus
     
 def connect(guild: discord.Guild, channel: discord.TextChannel):

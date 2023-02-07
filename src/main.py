@@ -8,7 +8,7 @@ tokens = settings.get_token(True)
 
 @client.event
 async def on_ready():
-    status.set_ready()
+    status.set_ready(True)
     print(client.user, "login")
 
 @client.event
