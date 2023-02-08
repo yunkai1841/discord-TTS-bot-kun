@@ -11,10 +11,17 @@ async def run(msg: discord.Message, debug: bool = False):
     if debug:
         print(f"command: {msg_txt}")
 
-    if msg_txt.startswith("con"):
+    if msg_txt.startswith("zunda"):
+        await connect(msg)
+        await msg.channel.send("こんにちはなのだ")
+    elif msg_txt.startswith("con"):
         await connect(msg)
     elif msg_txt.startswith(("dc", "dis")):
         await disconnect(msg)
+    elif msg_txt.startswith("speaker"):
+        num = int(msg_txt.split(" ")[1])
+        status.set_speeker(num)
+        await msg.channel.send(f"スピーカーを{num}に設定しました。")
 
 def get_help_txt(self):
     with open("..\help\general.txt", "r") as f:

@@ -2,6 +2,8 @@ import requests
 import json
 import time
 
+import status
+
 base_url = "http://localhost:50021"
 
 
@@ -40,5 +42,6 @@ def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, d
                               filename, "/", text[:30], r, text)
 
 
-def text_to_speech(text: str, filename: str, speaker: int = 3):
+def text_to_speech(text: str, filename: str):
+    speaker = status.speeker
     synthesis(text, filename, speaker)
