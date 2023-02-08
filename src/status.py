@@ -5,7 +5,7 @@ max_length = 20
 ready = False
 con_server = []
 observe_channel = {}
-speeker = 3
+speaker = 3
 
 def is_ready():
     return ready
@@ -34,6 +34,6 @@ def observing_channel(guild: discord.TextChannel):
 def is_observing(guild: discord.Guild, channel: discord.TextChannel):
     return observe_channel.get(guild) == channel
 
-def set_speeker(new_speeker):
-    global speeker
-    speeker = new_speeker
+def set_speaker(new_speaker):
+    global speaker
+    speaker = new_speaker

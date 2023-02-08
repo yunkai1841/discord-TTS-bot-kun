@@ -1,6 +1,6 @@
 import discord
 
-import status, command, settings, speek
+import status, command, settings, speak
 
 client = discord.Client(intents = discord.Intents.all())
 
@@ -25,7 +25,7 @@ async def on_message(msg: discord.Message):
         status.is_observing(msg.guild, msg.channel) and\
         not msg.guild.voice_client.is_playing():
 
-        speek.text_to_speech(msg.content, "out.wav")
+        speak.text_to_speech(msg.content, "out.wav")
         msg.guild.voice_client.play(discord.FFmpegPCMAudio("out.wav"))
 
 @client.event

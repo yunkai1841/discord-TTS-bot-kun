@@ -8,8 +8,8 @@ base_url = "http://localhost:50021"
 
 
 def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, debug: bool = False):
-    # speeker = 1: ずんだもん（あまあま）
-    # speeker = 3: ずんだもん（ノーマル）
+    # speaker = 1: ずんだもん（あまあま）
+    # speaker = 3: ずんだもん（ノーマル）
 
     # audio_query
     query_payload = {"text": text, "speaker": speaker}
@@ -43,5 +43,10 @@ def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, d
 
 
 def text_to_speech(text: str, filename: str):
-    speaker = status.speeker
+    speaker = status.speaker
     synthesis(text, filename, speaker)
+
+
+def get_speaker_list():
+    r = requests.get(base_url + "/speakers")
+    return r.json()

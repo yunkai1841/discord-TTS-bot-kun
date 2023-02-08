@@ -1,7 +1,6 @@
-import asyncio
 import discord
 
-import status
+import status, speak
 
 async def run(msg: discord.Message, debug: bool = False):
     #eliminate prefix 
@@ -20,8 +19,10 @@ async def run(msg: discord.Message, debug: bool = False):
         await disconnect(msg)
     elif msg_txt.startswith("speaker"):
         num = int(msg_txt.split(" ")[1])
-        status.set_speeker(num)
+        status.set_speaker(num)
         await msg.channel.send(f"スピーカーを{num}に設定しました。")
+    elif msg_txt.startswith("list"):
+        await msg.channel.send("```json\n" + speak.get_speaker_list() + "\n```")
 
 def get_help_txt(self):
     with open("..\help\general.txt", "r") as f:
