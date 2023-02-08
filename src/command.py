@@ -10,6 +10,9 @@ async def run(msg: discord.Message, debug: bool = False):
     if debug:
         print(f"command: {msg_txt}")
 
+    if msg_txt.startswith("help"):
+        await msg.channel.send(get_help_txt())
+
     if msg_txt.startswith("zunda"):
         await connect(msg)
         await msg.channel.send("こんにちはなのだ")
@@ -24,10 +27,9 @@ async def run(msg: discord.Message, debug: bool = False):
     # elif msg_txt.startswith("list"):
     #     await msg.channel.send("```json\n" + str(speak.get_speaker_list()) + "\n```")
 
-def get_help_txt(self):
-    with open("..\help\general.txt", "r") as f:
+def get_help_txt():
+    with open("help\general.txt", "r", encoding="utf-8") as f:
         return f.read()
-    return "help_txt err"
 
 async def connect(msg: discord.Message):
     if msg.author.voice is None:
