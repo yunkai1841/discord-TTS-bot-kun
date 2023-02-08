@@ -3,21 +3,20 @@
 
 *Bot-kun will make your text audible.*
 
+
 <br>
 
 ## Dependencies
-
-- **[Google Cloud TextToSpeech]**
 
 - **[Discord.py]**
 
 <br>
 
 ```shell
-pip install                     \
-    google-cloud-texttospeech   \
-    discord.py
+pip install -r requirements.txt
 ```
+
+You need to install VOICEVOX as the voice engine. You can download it from the [official website][VOICEVOX].<br>
 
 <br>
 <br>
@@ -39,7 +38,7 @@ pip install                     \
 
 <!----------------------------------------------------------------------------->
 
-[Google Cloud TextToSpeech]: https://pypi.org/project/google-cloud-texttospeech/
+[VOICEVOX]: https://voicevox.hiroshiba.jp/
 [Discord.py]: https://pypi.org/project/discord.py/
 [Releases]: https://github.com/yunkai1841/discord-TTS-bot-kun/releases
 
