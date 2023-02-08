@@ -21,8 +21,8 @@ async def run(msg: discord.Message, debug: bool = False):
         num = int(msg_txt.split(" ")[1])
         status.set_speaker(num)
         await msg.channel.send(f"スピーカーを{num}に設定しました。")
-    elif msg_txt.startswith("list"):
-        await msg.channel.send("```json\n" + speak.get_speaker_list() + "\n```")
+    # elif msg_txt.startswith("list"):
+    #     await msg.channel.send("```json\n" + str(speak.get_speaker_list()) + "\n```")
 
 def get_help_txt(self):
     with open("..\help\general.txt", "r") as f:
