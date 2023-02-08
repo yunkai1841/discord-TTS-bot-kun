@@ -5,8 +5,9 @@ import time
 base_url = "http://localhost:50021"
 
 
-def synthesis(text: str, filename: str, speaker: int = 1, max_retry: int = 20, debug: bool = False):
-    # speeker = 1: ずんだもん
+def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, debug: bool = False):
+    # speeker = 1: ずんだもん（あまあま）
+    # speeker = 3: ずんだもん（ノーマル）
 
     # audio_query
     query_payload = {"text": text, "speaker": speaker}
@@ -39,5 +40,5 @@ def synthesis(text: str, filename: str, speaker: int = 1, max_retry: int = 20, d
                               filename, "/", text[:30], r, text)
 
 
-def text_to_speech(text: str, filename: str, speaker: int = 1):
+def text_to_speech(text: str, filename: str, speaker: int = 3):
     synthesis(text, filename, speaker)

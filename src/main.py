@@ -28,4 +28,13 @@ async def on_message(msg: discord.Message):
         speek.text_to_speech(msg.content, "out.wav")
         msg.guild.voice_client.play(discord.FFmpegPCMAudio("out.wav"))
 
+@client.event
+async def on_voice_state_update(member: discord.Member, before: discord.VoiceState, after: discord.VoiceState):
+    if status.is_connect(member.guild):
+        # disconnect if bot is alone
+        if before.channel is not None and\
+            len(before.channel.members) == 1 and\
+            before.channel.members[0].id == client.user.id:
+            await member.guild.voice_client.disconnect()
+
 client.run(tokens["discord"])
