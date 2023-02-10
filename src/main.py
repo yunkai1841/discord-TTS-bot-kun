@@ -5,6 +5,7 @@ import status, command, settings, speak
 client = discord.Client(intents = discord.Intents.all())
 
 discord_token = settings.get_discord_token()
+text_max_length = settings.get_text_max_length()
 
 @client.event
 async def on_ready():
@@ -25,7 +26,8 @@ async def on_message(msg: discord.Message):
         status.is_observing(msg.guild, msg.channel) and\
         not msg.guild.voice_client.is_playing():
 
-        speak.text_to_speech(msg.content, "out.wav")
+        txt = msg.content if len(msg.content) < text_max_length else msg.content[:text_max_length]
+        speak.text_to_speech(txt, "out.wav")
         msg.guild.voice_client.play(discord.FFmpegPCMAudio("out.wav"))
 
 @client.event
