@@ -2,9 +2,9 @@ import requests
 import json
 import time
 
-import status
+import status, settings
 
-base_url = "http://localhost:50021"
+base_url = settings.get_voicevox_url()
 
 
 def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, debug: bool = False):

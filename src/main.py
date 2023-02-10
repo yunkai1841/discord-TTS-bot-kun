@@ -4,7 +4,7 @@ import status, command, settings, speak
 
 client = discord.Client(intents = discord.Intents.all())
 
-tokens = settings.get_token()
+discord_token = settings.get_discord_token()
 
 @client.event
 async def on_ready():
@@ -37,4 +37,4 @@ async def on_voice_state_update(member: discord.Member, before: discord.VoiceSta
             before.channel.members[0].id == client.user.id:
             await member.guild.voice_client.disconnect()
 
-client.run(tokens["discord"])
+client.run(discord_token)
