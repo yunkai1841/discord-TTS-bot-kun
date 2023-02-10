@@ -1,13 +1,15 @@
 import requests
 import json
 import time
+import warnings
 
-import status, settings
+import status
+import settings
 
 base_url = settings.get_voicevox_url()
 
 
-def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, debug: bool = False):
+def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 3, debug: bool = False):
     # speaker = 1: ずんだもん（あまあま）
     # speaker = 3: ずんだもん（ノーマル）
 
@@ -19,7 +21,9 @@ def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, d
         if r.status_code == 200:
             query_data = r.json()
             break
-        time.sleep(1)
+        else:
+            warnings.warn(f"audio_queryのリクエストが失敗しました。{r.text}")
+            time.sleep(1)
     else:
         raise ConnectionError(
             "リトライ回数が上限に到達しました。 audio_query : ", filename, "/", text[:30], r.text)
@@ -36,7 +40,9 @@ def synthesis(text: str, filename: str, speaker: int = 3, max_retry: int = 20, d
                 print(
                     f"{filename} は query={query_i+1}回, synthesis={synth_i+1}回のリトライで正常に保存されました")
             break
-        time.sleep(1)
+        else:
+            warnings.warn(f"synthesisのリクエストが失敗しました。{r.text}")
+            time.sleep(1)
     else:
         raise ConnectionError("リトライ回数が上限に到達しました。 synthesis : ",
                               filename, "/", text[:30], r, text)
